@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>英文法クイズ</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; background-color: #f9f9f9; }
+    .question { font-size: 18px; margin-bottom: 20px; }
+    .choices button {
+      display: block;
+      margin: 5px 0;
+      padding: 10px;
+      width: 100%;
+      font-size: 16px;
+    }
+    .result { margin-top: 20px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h2>英文法クイズ</h2>
+  <div class="question" id="question"></div>
+  <div class="choices" id="choices"></div>
+  <div class="result" id="result"></div>
+
+  <script>
+    const quiz = {
+      question: "The children made believe they were kings and queens.",
+      choices: ["imagined", "hoped", "acted", "made"],
+      correct: "imagined",
+      explanation: "「make believe」は「〜のふりをする」「空想する」。意味が近いのは『imagined』です。"
+    };
+
+    const questionEl = document.getElementById("question");
+    const choicesEl = document.getElementById("choices");
+    const resultEl = document.getElementById("result");
+
+    questionEl.textContent = quiz.question;
+
+    quiz.choices.forEach(choice => {
+      const btn = document.createElement("button");
+      btn.textContent = choice;
+      btn.onclick = () => {
+        if (choice === quiz.correct) {
+          resultEl.innerHTML = "✅ 正解！<br>" + quiz.explanation;
+        } else {
+          resultEl.innerHTML = "❌ 不正解…<br>" + quiz.explanation;
+        }
+      };
+      choicesEl.appendChild(btn);
+    });
+  </script>
+
+</body>
+</html>
